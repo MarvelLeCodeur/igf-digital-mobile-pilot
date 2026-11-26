@@ -1,0 +1,14 @@
+node_modules/
+.expo/
+.idea/
+dist/
+web-build/
+.env
+.env.local
+google-services.json
+*.apk
+*.aab
+*.keystore
+*.jks
+*.log
+.DS_Store

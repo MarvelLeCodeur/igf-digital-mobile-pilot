@@ -1,0 +1,57 @@
+import { Text } from 'react-native';
+
+const glyphs = {
+    "menu-line": "\uef3e",
+    "notification-3-line": "\uef94",
+    "scan-2-line": "\uf0bb",
+    "clipboard-line": "\ueb91",
+    "image-line": "\uee4b",
+    "cloud-line": "\ueb9d",
+    "checkbox-circle-fill": "\ueb80",
+    "arrow-right-s-line": "\uea6e",
+    "home-4-fill": "\uee1c",
+    "home-4-line": "\uee1d",
+    "file-list-3-line": "\uecef",
+    "user-3-line": "\uf256",
+    "add-line": "\uea13",
+    "checkbox-circle-line": "\ueb81",
+    "flag-line": "\ued3b",
+    "alarm-warning-line": "\uea1d",
+    "file-text-line": "\ued0f",
+    "error-warning-line": "\ueca1",
+    "bar-chart-2-line": "\uea96",
+    "arrow-right-line": "\uea6c",
+    "search-line": "\uf0d1",
+    "folder-3-line": "\ued54",
+    "arrow-left-s-line": "\uea64",
+    "calendar-line": "\ueb27",
+    "government-line": "\uedd9",
+    "lock-line": "\ueece",
+    "mail-line": "\ueef6",
+    "eye-line": "\uecb5",
+    "eye-off-line": "\uecb7",
+    "shield-check-line": "\uf100",
+    "question-line": "\uf045",
+    "settings-3-line": "\uf0e6",
+    "user-line": "\uf264",
+    "upload-2-line": "\uf24a",
+    "history-line": "\uee17",
+    "check-line": "\ueb7b",
+    "group-line": "\uede3",
+    "focus-3-line": "\ued4c",
+    "wifi-off-line": "\uf2c2",
+    "more-2-line": "\uef77",
+    "refresh-line": "\uf064",
+    "building-line": "\ueb0f",
+    "close-line": "\ueb99",
+    "error-warning-fill": "\ueca0",
+    "checkbox-blank-line": "\ueb7f",
+    "filter-line": "\ued27",
+    "time-line": "\uf20f",
+    "settings-4-line": "\uf0e8"
+};
+export type IconName = keyof typeof glyphs;
+
+export function RemixIcon({name,size=22,color='#142654'}:{name:IconName;size?:number;color?:string}) {
+    return <Text accessible={false} importantForAccessibility="no" style={{fontFamily:'RemixIcon',fontSize:size,color}}>{glyphs[name]}</Text>;
+}

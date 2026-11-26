@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "IGF Pilot",
+    "slug": "igf-pilot",
+    "orientation": "portrait",
+    "ios": {
+      "bundleIdentifier": "cd.gouv.igf.pilot"
+    },
+    "android": {
+      "softwareKeyboardLayoutMode": "resize",
+      "package": "cd.gouv.igf.pilot"
+    },
+    "scheme": "cd.gouv.igf.pilot",
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/igf-logo-light.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#16243E"
+        }
+      ]
+    ]
+  }
+}
