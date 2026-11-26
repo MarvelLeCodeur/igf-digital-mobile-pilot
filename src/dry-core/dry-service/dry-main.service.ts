@@ -1,7 +1,8 @@
 import { API_BASE_URL, IGF_APP } from '../../constants/config';
 import { getAuthSession, setAuthToken } from '../../dry-module/dry-auth/context/auth-session';
 
-async function request<T>(path: string, method: 'GET' | 'POST' | 'PATCH', payload?: object, operationKey?: string): Promise<T> {
+// Le type de contenu est paramétrable : la photo de profil est envoyée avec un type dédié.
+async function request<T>(path: string, method: 'GET' | 'POST' | 'PATCH', payload?: object, operationKey?: string, contentType = 'application/json'): Promise<T> {
     const {token,version} = getAuthSession();
     if (!token) throw new Error('Connectez-vous pour accéder à ces données.');
     if (!API_BASE_URL) throw new Error('Adresse de l’API IGF indisponible.');
@@ -11,7 +12,7 @@ async function request<T>(path: string, method: 'GET' | 'POST' | 'PATCH', payloa
         method,
         headers: {
             Authorization:`Bearer ${token}`, Accept:'application/json', 'X-IGF-App':IGF_APP,
-            ...(payload ? { 'Content-Type':'application/json' } : {}),
+            ...(payload ? { 'Content-Type':contentType } : {}),
             ...(operationKey ? { 'Idempotency-Key':operationKey } : {}),
         },
         signal: controller.signal,
@@ -25,6 +26,7 @@ async function request<T>(path: string, method: 'GET' | 'POST' | 'PATCH', payloa
     if (response.status === 403) throw new Error('Vous n’êtes pas habilité à consulter ces dossiers.');
     if (response.status === 409) throw new Error('Une modification concurrente a eu lieu. Rouvrez la fiche.');
     if (response.status === 422) throw new Error('Vérifiez les champs ou l’état du dossier.');
+    if (response.status === 413) throw new Error('Le fichier est trop volumineux. Choisissez une image plus légère.');
     if (!response.ok) throw new Error('Impossible de charger les données. Réessayez.');
     const data = await response.json() as T;
     if (getAuthSession().version !== version) throw new Error('La session a changé.');
@@ -55,7 +57,7 @@ export const dryMain = {
     create<T>(payload:object, route:string, operationKey?:string) {
         return request<T>(route,'POST',payload,operationKey);
     },
-    update<T>(payload:object, route:string) {
-        return request<T>(route,'PATCH',payload);
+    update<T>(payload:object, route:string, contentType?:string) {
+        return request<T>(route,'PATCH',payload,undefined,contentType);
     },
 };

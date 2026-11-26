@@ -11,6 +11,8 @@ interface LoginState {
 export function useLoginScreen({ busy,setBusy,setError,onConnected }: LoginState) {
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
+    // État de la case « Se souvenir de moi », identique à celui d'Inspect.
+    const [remember,setRemember] = useState(false);
 
     async function connect() {
         if (busy || !username.trim() || !password) return;
@@ -27,5 +29,5 @@ export function useLoginScreen({ busy,setBusy,setError,onConnected }: LoginState
         }
     }
 
-    return { username,setUsername,password,setPassword,connect };
+    return { remember,setRemember,username,setUsername,password,setPassword,connect };
 }

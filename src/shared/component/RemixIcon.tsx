@@ -48,7 +48,9 @@ const glyphs = {
     "checkbox-blank-line": "\ueb7f",
     "filter-line": "\ued27",
     "time-line": "\uf20f",
-    "settings-4-line": "\uf0e8"
+    "settings-4-line": "\uf0e8",
+    "logout-box-r-line": "\ueedb",
+    "phone-line": "\uefe9"
 };
 export type IconName = keyof typeof glyphs;
 

@@ -58,7 +58,7 @@ export function MobileLayout({children,active,showTabs=true,alertCount=0,title,b
                     </Pressable> : <Pressable accessibilityRole="button" accessibilityLabel="Ouvrir le menu latéral" accessibilityState={{expanded:menu}}
                         style={styles.headerAction} onPress={() => setMenu(true)}><RemixIcon name="menu-line" color="#fff" /></Pressable>}
                     {home ? <View style={styles.brand}>
-                        <Image source={require('../../../../assets/igf-logo-light.png')} style={styles.logo} resizeMode="contain"
+                        <Image source={require('../../../../assets/igf-logo-splash.png')} style={styles.logo} resizeMode="contain"
                             accessibilityLabel="Inspection générale des finances"/>
                     </View> : <Text accessibilityRole="header" style={styles.name} numberOfLines={1}>{title || 'IGF Pilot'}</Text>}
                     {showTabs ? <Pressable accessibilityRole="button" accessibilityLabel="Alertes" style={styles.headerAction} onPress={() => router.navigate('/alerts')}>

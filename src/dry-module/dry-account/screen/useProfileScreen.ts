@@ -37,20 +37,24 @@ export function useProfileScreen({ session,busy,setBusy,setError,setFeedback }: 
         } finally { setBusy(false); }
     }
 
-    async function saveProfile() {
-        if (!session || !profile || busy || displayName.trim().length < 2) return;
+    // Enregistre le nom et, si fournie, la photo (null la retire, undefined la laisse inchangée).
+    // Renvoie true quand l'enregistrement a réussi, pour que l'écran referme l'éditeur.
+    async function saveProfile(avatar?:string | null):Promise<boolean> {
+        if (!session || !profile || busy || displayName.trim().length < 2) return false;
         setBusy(true);
         setError('');
         setFeedback('');
         try {
             const {data} = await accountService.updateProfile({
-                expectedVersion:profile.version, displayName:displayName.trim(),
+                expectedVersion:profile.version, displayName:displayName.trim(), avatar,
             });
             setProfile(data);
             setDisplayName(data.displayName);
             setFeedback('Profil enregistré.');
+            return true;
         } catch (cause) {
             setError(cause instanceof Error ? cause.message : 'Profil indisponible.');
+            return false;
         } finally { setBusy(false); }
     }
 

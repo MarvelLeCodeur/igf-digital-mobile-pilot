@@ -6,7 +6,8 @@ export const accountService = {
     getProfile() {
         return dryMain.getOne<DryQueryResultInterface<UserProfile>>('/auth/me');
     },
-    updateProfile(input:{expectedVersion:number; displayName:string}) {
-        return dryMain.update<DryQueryResultInterface<UserProfile>>(input, '/auth/me');
+    // La photo est envoyée avec le type de contenu dédié attendu par l'API ; sans photo, le type JSON habituel est utilisé.
+    updateProfile(input:{expectedVersion:number; displayName:string; avatar?:string|null}) {
+        return dryMain.update<DryQueryResultInterface<UserProfile>>(input, '/auth/me', typeof input.avatar === 'string' ? 'application/vnd.igf.avatar+json' : undefined);
     },
 };
