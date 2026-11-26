@@ -9,7 +9,7 @@ export default function RootLayout() {
     if (!ready && !error) {
         return (
             <View style={styles.launch}>
-                <Image source={require('../../assets/igf-logo-light.png')} style={styles.logo}
+                <Image source={require('../../assets/igf-logo-splash.png')} style={styles.logo}
                     resizeMode="contain" accessibilityLabel="Inspection générale des finances" />
             </View>
         );

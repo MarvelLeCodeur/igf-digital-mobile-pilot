@@ -16,7 +16,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/igf-logo-light.png",
+          "image": "./assets/igf-logo-splash.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#16243E"
