@@ -1,0 +1,25 @@
+{
+  "cli": {
+    "version": ">= 25.3.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        "IGF_ALLOW_LOCAL_HTTP": "1",
+        "EXPO_PUBLIC_IGF_API_URL": "https://igf-digital-api.coryas.site/api/v1/"
+      }
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {
+      "autoIncrement": true
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}
